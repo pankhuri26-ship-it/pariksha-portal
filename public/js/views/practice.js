@@ -259,7 +259,7 @@ export async function practiceView({ root, user }) {
       h('div', { class: 'practice-question-top' },
         h('span', { class: 'chip' }, current.subject),
         h('span', { class: `practice-difficulty ${current.difficulty}` }, current.difficulty),
-        h('span', { class: 'muted small' }, TYPE_LABEL[current.type])
+        h('span', { class: 'muted small' }, TYPE_LABEL[current.type]),
         bookmarkButton
       ),
       h('h2', { class: 'practice-question-text' }, rich(current.text)),
