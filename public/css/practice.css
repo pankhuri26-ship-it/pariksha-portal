@@ -104,32 +104,44 @@
   .practice-stat strong { font-size: 1.3rem; }
   .practice-choice { grid-template-columns: 20px 30px minmax(0, 1fr); gap: 8px; padding-inline: 10px; }
 }
+/* Question card positioning */
+.practice-question-card {
+  position: relative;
+}
+
 /* Bookmark button */
 .practice-bookmark-btn {
-  margin-left: auto;
-  display: inline-flex;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: none;
+
+  width: 42px;
+  height: 42px;
+
+  border: 1px solid var(--line);
   border-radius: 10px;
-  background: transparent;
-  color: #777;
+
+  background: var(--bg-2);
+  color: var(--muted);
+
   cursor: pointer;
+  z-index: 5;
   transition: all 0.2s ease;
-  flex-shrink: 0;
 }
 
 .practice-bookmark-btn:hover {
-  background: rgba(99, 102, 241, 0.1);
   color: #6366f1;
-  transform: scale(1.08);
+  background: rgba(99, 102, 241, 0.12);
 }
 
-/* Bookmarked state */
 .practice-bookmark-btn.active {
   color: #6366f1;
+  background: rgba(99, 102, 241, 0.15);
+  border-color: #6366f1;
 }
 
 .practice-bookmark-btn.active svg {
@@ -137,7 +149,6 @@
   stroke: #6366f1;
 }
 
-.practice-bookmark-btn:focus-visible {
-  outline: 2px solid #6366f1;
-  outline-offset: 3px;
+.practice-question-top {
+  padding-right: 48px;
 }

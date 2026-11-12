@@ -123,36 +123,45 @@ export async function practiceView({ root, user }) {
     let checking = false;
 
     // Create bookmark button
-    const bookmarkButton = h(
-      'button',
-      {
-        class: `practice-bookmark-btn ${
-          isBookmarked(current.id) ? 'active' : ''
-        }`,
-        type: 'button',
-        title: isBookmarked(current.id)
-          ? 'Remove bookmark'
-          : 'Bookmark this question',
-        'aria-label': 'Bookmark this question',
-        'aria-pressed': String(isBookmarked(current.id))
-      },
-      h('svg', {
-        xmlns: 'http://www.w3.org/2000/svg',
-        width: '23',
-        height: '23',
-        viewBox: '0 0 24 24',
-        fill: 'none',
-        stroke: 'currentColor',
-        'stroke-width': '2',
-        'stroke-linecap': 'round',
-        'stroke-linejoin': 'round',
-        'aria-hidden': 'true'
-      },
-        h('path', {
-          d: 'M6 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18l-6-4-6 4z'
-        })
-      )
+    const bookmarkButton = h('button', {
+      class: `practice-bookmark-btn ${
+        isBookmarked(current.id) ? 'active' : ''
+      }`,
+      type: 'button',
+      title: isBookmarked(current.id)
+        ? 'Remove bookmark'
+        : 'Bookmark this question',
+      'aria-label': 'Bookmark this question',
+      'aria-pressed': String(isBookmarked(current.id))
+    });
+
+    // Create SVG using the native SVG namespace
+    const bookmarkSvg = document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'svg'
     );
+
+    bookmarkSvg.setAttribute('viewBox', '0 0 24 24');
+    bookmarkSvg.setAttribute('width', '24');
+    bookmarkSvg.setAttribute('height', '24');
+    bookmarkSvg.setAttribute('fill', 'none');
+    bookmarkSvg.setAttribute('stroke', 'currentColor');
+    bookmarkSvg.setAttribute('stroke-width', '2');
+    bookmarkSvg.setAttribute('stroke-linecap', 'round');
+    bookmarkSvg.setAttribute('stroke-linejoin', 'round');
+
+    const bookmarkPath = document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'path'
+    );
+
+    bookmarkPath.setAttribute(
+      'd',
+      'M6 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18l-6-4-6 4z'
+    );
+
+    bookmarkSvg.appendChild(bookmarkPath);
+    bookmarkButton.appendChild(bookmarkSvg);
 
     bookmarkButton.addEventListener('click', () => {
       toggleBookmark(current.id, bookmarkButton);
