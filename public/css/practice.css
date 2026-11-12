@@ -104,3 +104,26 @@
   .practice-stat strong { font-size: 1.3rem; }
   .practice-choice { grid-template-columns: 20px 30px minmax(0, 1fr); gap: 8px; padding-inline: 10px; }
 }
+.bookmark-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #777;
+    padding: 6px;
+    transition: 0.3s ease;
+}
+
+.bookmark-btn:hover {
+    color: #4f46e5;
+    transform: scale(1.1);
+}
+
+/* Active bookmark */
+.bookmark-btn.active {
+    color: #4f46e5;
+}
+
+.bookmark-btn.active svg {
+    fill: #4f46e5;
+    stroke: #4f46e5;
+}

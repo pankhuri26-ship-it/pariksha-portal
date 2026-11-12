@@ -243,4 +243,61 @@ export async function practiceView({ root, user }) {
 
   mount(root, appHeader(user), content);
   await loadQuestions();
+
+  // Get saved bookmarks
+  function getBookmarks() {
+    return JSON.parse(
+        localStorage.getItem("bookmarkedQuestions") || "[]"
+    );
+  }
+
+  // Toggle bookmark
+  function toggleBookmark(questionId, button) {
+
+    let bookmarks = getBookmarks();
+
+    if (bookmarks.includes(questionId)) {
+
+        // Remove bookmark
+        bookmarks = bookmarks.filter(
+            id => id !== questionId
+        );
+
+        button.classList.remove("active");
+
+    } 
+    else {
+
+        // Add bookmark
+        bookmarks.push(questionId);
+
+        button.classList.add("active");
+    }
+
+    // Save updated bookmarks
+    localStorage.setItem(
+        "bookmarkedQuestions",
+        JSON.stringify(bookmarks)
+    );
+  }
+
+  function updateBookmarkButtons() {
+
+    const bookmarks = getBookmarks();
+
+    document.querySelectorAll(".bookmark-btn").forEach(button => {
+
+        const questionId = button.dataset.questionId;
+
+        if (bookmarks.includes(questionId)) {
+            button.classList.add("active");
+        } else {
+            button.classList.remove("active");
+        }
+
+    });
+}
+
+// Run when page loads
+document.addEventListener("DOMContentLoaded", updateBookmarkButtons);
 }
