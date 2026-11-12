@@ -104,26 +104,40 @@
   .practice-stat strong { font-size: 1.3rem; }
   .practice-choice { grid-template-columns: 20px 30px minmax(0, 1fr); gap: 8px; padding-inline: 10px; }
 }
-.bookmark-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #777;
-    padding: 6px;
-    transition: 0.3s ease;
+/* Bookmark button */
+.practice-bookmark-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #777;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
-.bookmark-btn:hover {
-    color: #4f46e5;
-    transform: scale(1.1);
+.practice-bookmark-btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  transform: scale(1.08);
 }
 
-/* Active bookmark */
-.bookmark-btn.active {
-    color: #4f46e5;
+/* Bookmarked state */
+.practice-bookmark-btn.active {
+  color: #6366f1;
 }
 
-.bookmark-btn.active svg {
-    fill: #4f46e5;
-    stroke: #4f46e5;
+.practice-bookmark-btn.active svg {
+  fill: #6366f1;
+  stroke: #6366f1;
+}
+
+.practice-bookmark-btn:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 3px;
 }
